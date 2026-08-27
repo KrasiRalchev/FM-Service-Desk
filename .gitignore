@@ -1,0 +1,111 @@
+# ==========================================
+# Python
+# ==========================================
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Python virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+
+# ==========================================
+# Django
+# ==========================================
+
+# SQLite database
+db.sqlite3
+db.sqlite3-journal
+
+# Django static/media files
+media/
+staticfiles/
+
+# Collected static files
+/static_root/
+
+
+# ==========================================
+# Environment variables / secrets
+# ==========================================
+
+.env
+.env.*
+!.env.example
+
+
+# ==========================================
+# PyCharm / JetBrains
+# ==========================================
+
+.idea/
+*.iml
+*.iws
+*.ipr
+
+
+# ==========================================
+# VS Code
+# ==========================================
+
+.vscode/
+
+
+# ==========================================
+# Testing
+# ==========================================
+
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+
+# ==========================================
+# Type checking / linters
+# ==========================================
+
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.ruff_cache/
+
+
+# ==========================================
+# Logs
+# ==========================================
+
+*.log
+
+
+# ==========================================
+# OS files
+# ==========================================
+
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+
+# ==========================================
+# Temporary files
+# ==========================================
+
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
