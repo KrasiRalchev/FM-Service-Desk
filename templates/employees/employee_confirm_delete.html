@@ -1,0 +1,8 @@
+<h2>Изтриване на служител</h2>
+<p>Сигурен ли си, че искаш да изтриеш <strong>{{ object.first_name }} {{ object.last_name }}</strong>?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Да, изтрий</button>
+    <a href="{% url 'employees:employee_list' %}">Отказ</a>
+</form>

@@ -1,0 +1,308 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}FM Management{% endblock %}
+    </title>
+
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-header">
+
+            <div class="logo-mark">
+                M
+            </div>
+
+            <div class="logo-text">
+                <strong>FACILITY</strong>
+                <span>MANAGEMENT</span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <!-- Main -->
+
+            <div class="nav-section">
+                <span>Main</span>
+            </div>
+
+            <a href="#" class="nav-item active">
+                <span class="nav-icon">▦</span>
+                <span>Dashboard</span>
+            </a>
+
+
+            <!-- Maintenance -->
+
+            <div class="nav-section">
+                <span>Maintenance</span>
+            </div>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">▤</span>
+                <span>Work Orders</span>
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">✓</span>
+                <span>Preventive Maintenance</span>
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">⚙</span>
+                <span>Corrective Maintenance</span>
+            </a>
+
+
+            <!-- Assets -->
+
+            <div class="nav-section">
+                <span>Assets</span>
+            </div>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">▣</span>
+                <span>Assets</span>
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">↺</span>
+                <span>Asset History</span>
+            </a>
+
+
+            <!-- Operations -->
+
+            <div class="nav-section">
+                <span>Operations</span>
+            </div>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">!</span>
+                <span>Incidents</span>
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">▥</span>
+                <span>Reports</span>
+            </a>
+
+
+            <!-- Organization -->
+
+            <div class="nav-section">
+                <span>Organization</span>
+            </div>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">⌂</span>
+                <span>Sites</span>
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">▤</span>
+                <span>Departments</span>
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">◫</span>
+                <span>Units</span>
+            </a>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">$</span>
+                <span>Cost Centers</span>
+            </a>
+
+
+            <!-- Administration -->
+
+            <div class="nav-section">
+                <span>Administration</span>
+            </div>
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">⚙</span>
+                <span>Settings</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <div class="system-status">
+                <span class="status-dot"></span>
+
+                <div>
+                    <strong>System operational</strong>
+                    <small>All services running</small>
+                </div>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN APPLICATION
+    ========================== -->
+
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button
+                    class="menu-toggle"
+                    id="menuToggle"
+                    type="button"
+                    aria-label="Toggle menu"
+                >
+                    ☰
+                </button>
+
+                <div class="breadcrumb">
+                    <span>Maintenance</span>
+                    <span class="breadcrumb-separator">/</span>
+                    <strong>
+                        {% block breadcrumb %}Dashboard{% endblock %}
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+
+                <!-- Site selector -->
+
+                <div class="site-selector">
+
+                    <span class="site-label">
+                        Site
+                    </span>
+
+                    <select id="siteSelector">
+
+                        <option value="all">
+                            All Sites
+                        </option>
+
+                        <option value="airport1">
+                            Airport 1
+                        </option>
+
+                        <option value="airport2">
+                            Airport 2
+                        </option>
+
+                        <option value="head-office">
+                            Head Office
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Notifications -->
+
+                <button
+                    class="notification-button"
+                    type="button"
+                    aria-label="Notifications"
+                >
+
+                    <span class="notification-icon">
+                        ♢
+                    </span>
+
+                    <span class="notification-badge">
+                        3
+                    </span>
+
+                </button>
+
+
+                <!-- User -->
+
+                <div class="user-menu">
+
+                    <div class="user-avatar">
+                        A
+                    </div>
+
+                    <div class="user-info">
+
+                        <strong>
+                            Administrator
+                        </strong>
+
+                        <small>
+                            Maintenance Management
+                        </small>
+
+                    </div>
+
+                    <span class="user-arrow">
+                        ▾
+                    </span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- PAGE CONTENT -->
+
+        <div class="page-content">
+
+            {% block content %}
+
+            {% endblock %}
+
+        </div>
+
+
+    </main>
+
+</div>
+
+
+<script src="{% static 'js/base.js' %}"></script>
+
+{% block extra_js %}
+
+{% endblock %}
+
+</body>
+</html>

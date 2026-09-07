@@ -1,0 +1,24 @@
+<h2>{% if object %}Редактиране на служител{% else %}Нов служител{% endif %}</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    {% if not object %}
+        <!-- Само при създаване -->
+        <h3>Данни за акаунт</h3>
+        {{ form.username.label_tag }} {{ form.username }}
+        {{ form.password.label_tag }} {{ form.password }}
+    {% endif %}
+
+    {{ form.email.label_tag }} {{ form.email }}
+
+    <h3>Лични данни</h3>
+    {{ form.first_name.label_tag }} {{ form.first_name }}
+    {{ form.last_name.label_tag }} {{ form.last_name }}
+    {{ form.position.label_tag }} {{ form.position }}
+    {{ form.department.label_tag }} {{ form.department }}
+    {{ form.phone.label_tag }} {{ form.phone }}
+
+    <button type="submit">Запази</button>
+    <a href="{% url 'employees:employee_list' %}">Отказ</a>
+</form>
