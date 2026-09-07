@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard | Maintenance Management
+{% endblock %}
+
+{% block breadcrumb %}
+Dashboard
+{% endblock %}
+
+
+{% block content %}
+
+<div class="page-heading">
+
+    <h1 class="page-title">
+        Maintenance Dashboard
+    </h1>
+
+    <p class="page-description">
+        Overview of maintenance operations
+    </p>
+
+</div>
+
+
+<!-- =====================================
+     KPI
+====================================== -->
+
+<div class="kpi-grid">
+
+    <div class="kpi-card">
+
+        <span class="kpi-card-label">
+            New Requests
+        </span>
+
+        <strong class="kpi-card-value">
+            12
+        </strong>
+
+        <span class="kpi-card-description">
+            New corrective requests
+        </span>
+
+    </div>
+
+
+    <div class="kpi-card">
+
+        <span class="kpi-card-label">
+            In Progress
+        </span>
+
+        <strong class="kpi-card-value">
+            24
+        </strong>
+
+        <span class="kpi-card-description">
+            Currently being handled
+        </span>
+
+    </div>
+
+
+    <div class="kpi-card">
+
+        <span class="kpi-card-label">
+            Waiting
+        </span>
+
+        <strong class="kpi-card-value">
+            7
+        </strong>
+
+        <span class="kpi-card-description">
+            Parts or materials
+        </span>
+
+    </div>
+
+
+    <div class="kpi-card">
+
+        <span class="kpi-card-label">
+            Completed
+        </span>
+
+        <strong class="kpi-card-value">
+            156
+        </strong>
+
+        <span class="kpi-card-description">
+            Completed this month
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================
+     TODAY'S PREVENTIVE MAINTENANCE
+====================================== -->
+
+<div class="panel">
+
+    <div class="panel-header">
+
+        <h2>
+            Today's Preventive Maintenance
+        </h2>
+
+        <span>
+            04 September 2026
+        </span>
+
+    </div>
+
+    <div style="padding: 20px;">
+
+        Today's preventive maintenance tasks
+        will appear here.
+
+    </div>
+
+</div>
+
+
+<!-- =====================================
+     CORRECTIVE REQUESTS
+====================================== -->
+
+<div class="panel">
+
+    <div class="panel-header">
+
+        <h2>
+            Open Corrective Requests
+        </h2>
+
+    </div>
+
+    <div style="padding: 20px;">
+
+        Corrective maintenance requests
+        will appear here.
+
+    </div>
+
+</div>
+
+
+{% endblock %}
