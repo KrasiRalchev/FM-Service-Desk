@@ -75,9 +75,9 @@ WSGI_APPLICATION = 'fm_service_desk.wsgi.application'
 DATABASES = {
 "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "mydatabase",
-        "USER": "mydatabaseuser",
-        "PASSWORD": "mypassword",
+        "NAME": "fm_service_desk_db",
+        "USER": "postgres",
+        "PASSWORD": "1234",
         "HOST": "127.0.0.1",
         "PORT": "5432",
     }
