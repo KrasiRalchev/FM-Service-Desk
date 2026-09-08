@@ -1,24 +1,301 @@
-<h2>{% if object %}Редактиране на служител{% else %}Нов служител{% endif %}</h2>
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {% if object %}
+        Edit Employee | FM Service Desk
+    {% else %}
+        Add Employee | FM Service Desk
+    {% endif %}
+{% endblock %}
+
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/employees.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+
+        <div class="breadcrumb">
+            Organization
+            <span>/</span>
+            Employees
+            <span>/</span>
+
+            {% if object %}
+                Edit Employee
+            {% else %}
+                Add Employee
+            {% endif %}
+        </div>
+
+
+        <h1>
+            {% if object %}
+                Edit Employee
+            {% else %}
+                Add Employee
+            {% endif %}
+        </h1>
+
+
+        <p>
+            {% if object %}
+                Update employee information
+            {% else %}
+                Create a new employee account
+            {% endif %}
+        </p>
+
+    </div>
+
+</div>
+
 
 <form method="post">
+
     {% csrf_token %}
 
+
+    <!-- ACCOUNT INFORMATION -->
+
     {% if not object %}
-        <!-- Само при създаване -->
-        <h3>Данни за акаунт</h3>
-        {{ form.username.label_tag }} {{ form.username }}
-        {{ form.password.label_tag }} {{ form.password }}
+
+    <div class="card employee-form-card">
+
+        <div class="form-card-header">
+
+            <div>
+                <h2>Account Information</h2>
+
+                <p>
+                    Login information for the employee
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="form-card-body">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    {{ form.username.label_tag }}
+
+                    {{ form.username }}
+
+                    {% if form.username.errors %}
+                        <div class="form-error">
+                            {{ form.username.errors }}
+                        </div>
+                    {% endif %}
+
+                </div>
+
+
+                <div class="form-group">
+
+                    {{ form.password.label_tag }}
+
+                    {{ form.password }}
+
+                    {% if form.password.errors %}
+                        <div class="form-error">
+                            {{ form.password.errors }}
+                        </div>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
     {% endif %}
 
-    {{ form.email.label_tag }} {{ form.email }}
 
-    <h3>Лични данни</h3>
-    {{ form.first_name.label_tag }} {{ form.first_name }}
-    {{ form.last_name.label_tag }} {{ form.last_name }}
-    {{ form.position.label_tag }} {{ form.position }}
-    {{ form.department.label_tag }} {{ form.department }}
-    {{ form.phone.label_tag }} {{ form.phone }}
+    <!-- CONTACT INFORMATION -->
 
-    <button type="submit">Запази</button>
-    <a href="{% url 'employees:employee_list' %}">Отказ</a>
+    <div class="card employee-form-card">
+
+        <div class="form-card-header">
+
+            <div>
+
+                <h2>Contact Information</h2>
+
+                <p>
+                    Employee contact details
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-card-body">
+
+            <div class="form-grid">
+
+                <div class="form-group form-group-full">
+
+                    {{ form.email.label_tag }}
+
+                    {{ form.email }}
+
+                    {% if form.email.errors %}
+                        <div class="form-error">
+                            {{ form.email.errors }}
+                        </div>
+                    {% endif %}
+
+                </div>
+
+
+                <div class="form-group">
+
+                    {{ form.phone.label_tag }}
+
+                    {{ form.phone }}
+
+                    {% if form.phone.errors %}
+                        <div class="form-error">
+                            {{ form.phone.errors }}
+                        </div>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- PERSONAL INFORMATION -->
+
+    <div class="card employee-form-card">
+
+        <div class="form-card-header">
+
+            <div>
+
+                <h2>Personal Information</h2>
+
+                <p>
+                    Employee personal and organizational information
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-card-body">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    {{ form.first_name.label_tag }}
+
+                    {{ form.first_name }}
+
+                    {% if form.first_name.errors %}
+                        <div class="form-error">
+                            {{ form.first_name.errors }}
+                        </div>
+                    {% endif %}
+
+                </div>
+
+
+                <div class="form-group">
+
+                    {{ form.last_name.label_tag }}
+
+                    {{ form.last_name }}
+
+                    {% if form.last_name.errors %}
+                        <div class="form-error">
+                            {{ form.last_name.errors }}
+                        </div>
+                    {% endif %}
+
+                </div>
+
+
+                <div class="form-group">
+
+                    {{ form.position.label_tag }}
+
+                    {{ form.position }}
+
+                    {% if form.position.errors %}
+                        <div class="form-error">
+                            {{ form.position.errors }}
+                        </div>
+                    {% endif %}
+
+                </div>
+
+
+                <div class="form-group">
+
+                    {{ form.department.label_tag }}
+
+                    {{ form.department }}
+
+                    {% if form.department.errors %}
+                        <div class="form-error">
+                            {{ form.department.errors }}
+                        </div>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FORM ACTIONS -->
+
+    <div class="form-actions">
+
+        <a
+            href="{% url 'employees:employee_list' %}"
+            class="btn btn-secondary">
+            Cancel
+        </a>
+
+
+        <button
+            type="submit"
+            class="btn btn-primary">
+
+            {% if object %}
+                Save Changes
+            {% else %}
+                Create Employee
+            {% endif %}
+
+        </button>
+
+    </div>
+
 </form>
+
+{% endblock %}

@@ -47,7 +47,7 @@
             </div>
 
             <a href="#" class="nav-item active">
-                <span class="nav-icon">▦</span>
+                <span class="nav-icon">🏡</span>
                 <span>Dashboard</span>
             </a>
 
@@ -59,17 +59,12 @@
             </div>
 
             <a href="#" class="nav-item">
-                <span class="nav-icon">▤</span>
-                <span>Work Orders</span>
-            </a>
-
-            <a href="#" class="nav-item">
-                <span class="nav-icon">✓</span>
+                <span class="nav-icon nav-icon-green">✓</span>
                 <span>Preventive Maintenance</span>
             </a>
 
             <a href="#" class="nav-item">
-                <span class="nav-icon">⚙</span>
+                <span class="nav-icon nav-icon-orange">⚙</span>
                 <span>Corrective Maintenance</span>
             </a>
 
@@ -81,13 +76,13 @@
             </div>
 
             <a href="#" class="nav-item">
-                <span class="nav-icon">▣</span>
-                <span>Assets</span>
+                 <span class="nav-icon">🏗️</span>
+                <span>Facilities</span>
             </a>
 
             <a href="#" class="nav-item">
-                <span class="nav-icon">↺</span>
-                <span>Asset History</span>
+                <span class="nav-icon">📜</span>
+                <span>Facility History</span>
             </a>
 
 
@@ -98,12 +93,12 @@
             </div>
 
             <a href="#" class="nav-item">
-                <span class="nav-icon">!</span>
+                <span class="nav-icon nav-icon-red">!</span>
                 <span>Incidents</span>
             </a>
 
             <a href="#" class="nav-item">
-                <span class="nav-icon">▥</span>
+                 <span class="nav-icon">📊</span>
                 <span>Reports</span>
             </a>
 
@@ -114,23 +109,13 @@
                 <span>Organization</span>
             </div>
 
-            <a href="#" class="nav-item">
-                <span class="nav-icon">⌂</span>
-                <span>Sites</span>
-            </a>
+           <a href="{% url 'employees:employee_list' %}" class="nav-item">
+           <span class="nav-icon">👤</span>
+           <span>Employees</span>
+           </a>
 
             <a href="#" class="nav-item">
-                <span class="nav-icon">▤</span>
-                <span>Departments</span>
-            </a>
-
-            <a href="#" class="nav-item">
-                <span class="nav-icon">◫</span>
-                <span>Units</span>
-            </a>
-
-            <a href="#" class="nav-item">
-                <span class="nav-icon">$</span>
+                <span class="nav-icon">💶</span>
                 <span>Cost Centers</span>
             </a>
 
@@ -142,7 +127,7 @@
             </div>
 
             <a href="#" class="nav-item">
-                <span class="nav-icon">⚙</span>
+                 <span class="nav-icon">🛠️</span>
                 <span>Settings</span>
             </a>
 
@@ -212,19 +197,15 @@
                     <select id="siteSelector">
 
                         <option value="all">
-                            All Sites
+                            All Airports
                         </option>
 
                         <option value="airport1">
-                            Airport 1
+                            Varna Airport
                         </option>
 
                         <option value="airport2">
-                            Airport 2
-                        </option>
-
-                        <option value="head-office">
-                            Head Office
+                            Burgas Airport
                         </option>
 
                     </select>
@@ -296,6 +277,8 @@
     </main>
 
 </div>
+
+{% include 'additional_parts/footer.html' %}
 
 
 <script src="{% static 'js/base.js' %}"></script>

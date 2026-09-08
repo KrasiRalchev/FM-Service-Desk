@@ -1,43 +1,215 @@
-<h2>Служители</h2>
+{% extends "base.html" %}
 
-<form method="get" style="margin-bottom: 20px;">
-    <input type="text" name="q" value="{{ q }}" placeholder="Търси по име, позиция, телефон...">
-    <input type="text" name="department" value="{{ department }}" placeholder="Отдел">
-    <button type="submit">Търси</button>
-    <a href="{% url 'employees:employee_list' %}">Изчисти</a>
-</form>
+{% load static %}
 
-<a href="{% url 'employees:employee_create' %}">+ Добави служител</a>
+{% block breadcrumb %}
+Dashboard
+{% endblock %}
 
-<table>
-    <thead>
-        <tr>
-            <th>Име</th>
-            <th>Потребителско име</th>
-            <th>Позиция</th>
-            <th>Отдел</th>
-            <th>Телефон</th>
-            <th>Действия</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for employee in employees %}
-        <tr>
-            <td>{{ employee.first_name }} {{ employee.last_name }}</td>
-            <td>{{ employee.user.username }}</td>
-            <td>{{ employee.position }}</td>
-            <td>{{ employee.department }}</td>
-            <td>{{ employee.phone }}</td>
-            <td>
-                <a href="{% url 'employees:employee_update' employee.pk %}">Редактирай</a> |
-                <a href="{% url 'employees:employee_password_change' employee.pk %}">Парола</a> |
-                <a href="{% url 'employees:employee_delete' employee.pk %}">Изтрий</a>
-            </td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="6">Няма намерени служители.</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+{% block title %}Employees | Employees list{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/employees.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <div>
+        <div class="breadcrumb">
+            Organization <span>/</span> Employees
+        </div>
+
+        <h1>Employees</h1>
+        <p>Manage employees and organizational information</p>
+    </div>
+
+    <a href="{% url 'employees:employee_create' %}" class="btn btn-primary">
+        + Add Employee
+    </a>
+</div>
+
+
+<!-- Search / Filters -->
+<div class="card filter-card">
+
+    <form method="get" class="employee-filters">
+
+        <div class="filter-group search-group">
+            <label for="search">Search</label>
+
+            <input
+                type="text"
+                id="search"
+                name="q"
+                value="{{ q }}"
+                placeholder="Name, position, phone..."
+            >
+        </div>
+
+        <div class="filter-group">
+            <label for="department">Department</label>
+
+            <input
+                type="text"
+                id="department"
+                name="department"
+                value="{{ department }}"
+                placeholder="Department"
+            >
+        </div>
+
+        <div class="filter-actions">
+            <button type="submit" class="btn btn-primary">
+                Search
+            </button>
+
+            <a
+                href="{% url 'employees:employee_list' %}"
+                class="btn btn-secondary"
+            >
+                Clear
+            </a>
+        </div>
+
+    </form>
+
+</div>
+
+
+<!-- Employees table -->
+<div class="card employees-card">
+
+    <div class="card-header">
+        <div>
+            <h2>Employees</h2>
+            <p>List of registered employees</p>
+        </div>
+
+        <span class="employee-count">
+            {{ employees|length }} employees
+        </span>
+    </div>
+
+
+    <div class="table-wrapper">
+
+        <table class="employees-table">
+
+            <thead>
+                <tr>
+                    <th>Employee</th>
+                    <th>Username</th>
+                    <th>Position</th>
+                    <th>Department</th>
+                    <th>Phone</th>
+                    <th class="actions-column">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for employee in employees %}
+
+                <tr>
+
+                    <td>
+                        <div class="employee-info">
+
+                            <div class="employee-avatar">
+                                {{ employee.first_name|first|upper }}
+                            </div>
+
+                            <div>
+                                <div class="employee-name">
+                                    {{ employee.first_name }}
+                                    {{ employee.last_name }}
+                                </div>
+
+                                <div class="employee-email">
+                                    {{ employee.user.email }}
+                                </div>
+                            </div>
+
+                        </div>
+                    </td>
+
+
+                    <td>
+                        <span class="username">
+                            {{ employee.user.username }}
+                        </span>
+                    </td>
+
+
+                    <td>
+                        {{ employee.position }}
+                    </td>
+
+
+                    <td>
+                        <span class="department-badge">
+                            {{ employee.department }}
+                        </span>
+                    </td>
+
+
+                    <td>
+                        {{ employee.phone }}
+                    </td>
+
+
+                    <td class="actions">
+
+                        <a
+                            href="{% url 'employees:employee_update' employee.pk %}"
+                            class="action-link edit"
+                        >
+                            Edit
+                        </a>
+
+                        <a
+                            href="{% url 'employees:employee_password_change' employee.pk %}"
+                            class="action-link password"
+                        >
+                            Password
+                        </a>
+
+                        <a
+                            href="{% url 'employees:employee_delete' employee.pk %}"
+                            class="action-link delete"
+                        >
+                            Delete
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+                    <td colspan="6" class="empty-state">
+
+                        <div class="empty-icon">👤</div>
+
+                        <strong>No employees found</strong>
+
+                        <p>
+                            There are no employees matching your search.
+                        </p>
+
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -20,7 +20,7 @@ class EmployeeListView(StaffRequiredMixin, ListView):
     template_name = 'employees/employee_list.html'
     context_object_name = 'employees'
     ordering = ['last_name', 'first_name']
-    paginate_by = 20  # по желание
+    paginate_by = 20  # this is not mandatory
 
     def get_queryset(self):
         queryset = super().get_queryset()

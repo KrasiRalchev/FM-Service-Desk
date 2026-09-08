@@ -1,8 +1,84 @@
-<h2>Изтриване на служител</h2>
-<p>Сигурен ли си, че искаш да изтриеш <strong>{{ object.first_name }} {{ object.last_name }}</strong>?</p>
+{% extends "base.html" %}
+{% load static %}
 
-<form method="post">
-    {% csrf_token %}
-    <button type="submit">Да, изтрий</button>
-    <a href="{% url 'employees:employee_list' %}">Отказ</a>
-</form>
+{% block title %}Delete Employee | FM Service Desk{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/employees.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+
+        <div class="breadcrumb">
+            Organization
+            <span>/</span>
+            Employees
+            <span>/</span>
+            Delete Employee
+        </div>
+
+        <h1>Delete Employee</h1>
+
+        <p>
+            Remove an employee from the system
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="card delete-card">
+
+    <div class="delete-icon">
+        !
+    </div>
+
+
+    <div class="delete-content">
+
+        <h2>
+            Delete Employee
+        </h2>
+
+        <p>
+            Are you sure you want to delete
+            <strong>
+                {{ object.first_name }} {{ object.last_name }}
+            </strong>?
+        </p>
+
+        <p class="delete-warning">
+            This action cannot be undone.
+        </p>
+
+
+        <form method="post" class="delete-form">
+
+            {% csrf_token %}
+
+            <button
+                type="submit"
+                class="btn btn-danger">
+                Yes, Delete
+            </button>
+
+
+            <a
+                href="{% url 'employees:employee_list' %}"
+                class="btn btn-secondary">
+                Cancel
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

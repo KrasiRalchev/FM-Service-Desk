@@ -188,9 +188,21 @@ body {
 
     text-align: center;
 
-    font-size: 15px;
+    font-size: 16px;
 
     opacity: 0.9;
+}
+
+.nav-item .nav-icon-green {
+    color: #22c55e;
+}
+
+.nav-item .nav-icon-orange {
+    color: darkorange;
+}
+
+.nav-item .nav-icon-red {
+    color: red;
 }
 
 
@@ -671,6 +683,7 @@ body {
         margin-left: 0;
 
         width: 100%;
+
     }
 
     .menu-toggle {
