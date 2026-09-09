@@ -5,13 +5,13 @@ from django.contrib.auth.models import User
 from .models import UserProfile
 
 class EmployeeCreateForm(forms.ModelForm):
-    username = forms.CharField(max_length=150, label="Потребителско име")
-    password = forms.CharField(widget=forms.PasswordInput, label="Парола")
-    email = forms.EmailField(required=False, label="Имейл")
+    username = forms.CharField(max_length=150, label="Username")
+    password = forms.CharField(widget=forms.PasswordInput, label="Password")
+    email = forms.EmailField(required=False, label="Email")
 
     class Meta:
         model = UserProfile
-        fields = ['first_name', 'last_name', 'position', 'department', 'phone']
+        fields = ['first_name', 'last_name', 'position', 'department', 'phone', 'mobile']
 
     def save(self, commit=True):
         user = User.objects.create_user(
