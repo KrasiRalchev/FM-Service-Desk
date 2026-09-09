@@ -46,7 +46,7 @@
                 <span>Main</span>
             </div>
 
-            <a href="#" class="nav-item active">
+            <a href="{% url 'dashboard:dashboard' %}" class="nav-item active">
                 <span class="nav-icon">🏡</span>
                 <span>Dashboard</span>
             </a>
@@ -173,11 +173,10 @@
                 </button>
 
                 <div class="breadcrumb">
-                    <span>Maintenance</span>
-                    <span class="breadcrumb-separator">/</span>
-                    <strong>
-                        {% block breadcrumb %}Dashboard{% endblock %}
-                    </strong>
+
+                    <strong>Service Desk</strong>
+
+
                 </div>
 
             </div>
