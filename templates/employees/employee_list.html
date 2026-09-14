@@ -49,7 +49,7 @@
                 id="department"
                 name="department"
                 value="{{ department }}"
-                placeholder="Department"
+                placeholder="All Departments"
             >
         </div>
 
@@ -97,6 +97,7 @@
                     <th>Position</th>
                     <th>Department</th>
                     <th>Phone</th>
+                    <th>Mobile</th>
                     <th class="actions-column">Actions</th>
                 </tr>
             </thead>
@@ -150,6 +151,10 @@
 
                     <td>
                         {{ employee.phone }}
+                    </td>
+
+                    <td>
+                        {{ employee.mobile }}
                     </td>
 
 
