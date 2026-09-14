@@ -19,8 +19,8 @@ from django.urls import path, include
 
 
 PROJECT_URLS = [
-    path('', include('dashboard.urls')),
-    path('employees/', include('employees.urls')),
+    path('', include('employees.urls')),
+    path('dashboard/', include('dashboard.urls')),
 ]
 
 urlpatterns = [

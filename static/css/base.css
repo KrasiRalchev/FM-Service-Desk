@@ -496,10 +496,18 @@ body {
     margin-top: 2px;
 }
 
-.user-arrow {
-    color: #9ca3af;
-
+.logout-option {
+    background-color: #ffffff;
+    border: none;
+    color: #374151;
     font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    padding-left: 30px;
+}
+
+.logout-option:hover {
+    color: #B41727;
 }
 
 

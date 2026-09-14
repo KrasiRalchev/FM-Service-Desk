@@ -109,7 +109,7 @@
                 <span>Organization</span>
             </div>
 
-           <a href="{% url 'employees:employee_list' %}" class="nav-item">
+           <a href="{% url 'employees:employee-list' %}" class="nav-item">
            <span class="nav-icon">👤</span>
            <span>Employees</span>
            </a>
@@ -236,24 +236,35 @@
                 <div class="user-menu">
 
                     <div class="user-avatar">
-                        A
+                        {{ request.user.username|first|upper }}
                     </div>
 
                     <div class="user-info">
 
-                        <strong>
-                            Administrator
-                        </strong>
+                        {% if request.user.is_authenticated %}
+                           <span >
+                                <strong> {{ user.profile.first_name }} {{ user.profile.last_name }} </strong>
+                            </span>
+                        {% endif %}
 
-                        <small>
-                            Maintenance Management
-                        </small>
+                            <small>
+                                {{ user.profile.department }}
+                            </small>
 
                     </div>
 
-                    <span class="user-arrow">
-                        ▾
-                    </span>
+                <div>
+
+
+
+                    <form method="post" action="{% url 'employees:logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="logout-option">
+                            Logout
+                        </button>
+                    </form>
+
+                </div>
 
                 </div>
 

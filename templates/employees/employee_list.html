@@ -1,3 +1,5 @@
+<!--list of employees and filters template-->
+
 {% extends "base.html" %}
 
 {% load static %}
@@ -16,7 +18,7 @@
         <p>Manage employees and organizational information</p>
     </div>
 
-    <a href="{% url 'employees:employee_create' %}" class="btn btn-primary">
+    <a href="{% url 'employees:employee-create' %}" class="btn btn-primary">
         + Add Employee
     </a>
 </div>
@@ -57,7 +59,7 @@
             </button>
 
             <a
-                href="{% url 'employees:employee_list' %}"
+                href="{% url 'employees:employee-list' %}"
                 class="btn btn-secondary"
             >
                 Clear
@@ -154,21 +156,21 @@
                     <td class="actions">
 
                         <a
-                            href="{% url 'employees:employee_update' employee.pk %}"
+                            href="{% url 'employees:employee-update' employee.pk %}"
                             class="action-link edit"
                         >
                             Edit
                         </a>
 
                         <a
-                            href="{% url 'employees:employee_password_change' employee.pk %}"
+                            href="{% url 'employees:employee-password-change' employee.pk %}"
                             class="action-link password"
                         >
                             Password
                         </a>
 
                         <a
-                            href="{% url 'employees:employee_delete' employee.pk %}"
+                            href="{% url 'employees:employee-delete' employee.pk %}"
                             class="action-link delete"
                         >
                             Delete

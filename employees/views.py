@@ -1,5 +1,5 @@
-
-# main role - users and authorization
+from django.contrib.auth.views import LoginView, LogoutView
+# main role - users and authenticate
 
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
@@ -11,9 +11,20 @@ from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from django.views.generic import FormView
 from .forms import EmployeePasswordChangeForm
-
-
 from django.db.models import Q
+
+
+class LoginUserView(LoginView):
+    template_name = 'employees/employee_login.html'
+    redirect_authenticated_user = True
+
+    def get_success_url(self):
+        return reverse_lazy('dashboard:dashboard')
+
+
+class LogoutUserView(LogoutView):
+    next_page = reverse_lazy('employees:login')
+
 
 class EmployeeListView(StaffRequiredMixin, ListView):
     model = UserProfile
@@ -52,20 +63,20 @@ class EmployeeCreateView(StaffRequiredMixin, CreateView):
     model = UserProfile
     form_class = EmployeeCreateForm
     template_name = 'employees/employee_form.html'
-    success_url = reverse_lazy('employees:employee_list')
+    success_url = reverse_lazy('employees:employee-list')
 
 
 class EmployeeUpdateView(StaffRequiredMixin, UpdateView):
     model = UserProfile
     form_class = EmployeeUpdateForm
     template_name = 'employees/employee_form.html'
-    success_url = reverse_lazy('employees:employee_list')
+    success_url = reverse_lazy('employees:employee-list')
 
 
 class EmployeeDeleteView(StaffRequiredMixin, DeleteView):
     model = UserProfile
     template_name = 'employees/employee_confirm_delete.html'
-    success_url = reverse_lazy('employees:employee_list')
+    success_url = reverse_lazy('employees:employee-list')
 
     def delete(self, request, *args, **kwargs):
         # Изтриваме и User-а заедно с Profile-а
@@ -79,7 +90,7 @@ class EmployeeDeleteView(StaffRequiredMixin, DeleteView):
 class EmployeePasswordChangeView(StaffRequiredMixin, FormView):
     template_name = 'employees/employee_password_change.html'
     form_class = EmployeePasswordChangeForm
-    success_url = reverse_lazy('employees:employee_list')
+    success_url = reverse_lazy('employees:employee-list')
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()

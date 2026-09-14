@@ -1,0 +1,73 @@
+
+{% load static %}
+
+{% block title %}Employee Verification{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/employee_verification.css' %}">
+{% endblock %}
+
+<div class="verification-page">
+
+    <div class="page-header">
+        <h1>Employee Verification</h1>
+        <p>Verify your employee account to continue</p>
+    </div>
+
+    <div class="verification-card">
+
+        <div class="verification-card-header">
+            <h2>Verify Employee</h2>
+            <p>Enter your username and password to verify your identity.</p>
+        </div>
+
+        <form method="post" class="verification-form">
+
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="form-error">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">
+                    Username
+                </label>
+
+                {{ form.username }}
+
+                {% if form.username.errors %}
+                    <div class="field-error">
+                        {{ form.username.errors }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.password.id_for_label }}">
+                    Password
+                </label>
+
+                {{ form.password }}
+
+                {% if form.password.errors %}
+                    <div class="field-error">
+                        {{ form.password.errors }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="verify-button">
+                    Login
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
