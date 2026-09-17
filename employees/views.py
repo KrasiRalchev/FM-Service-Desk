@@ -1,11 +1,19 @@
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import (LoginView,
+                                       LogoutView)
+
 # main role - users and authenticate
 
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import (ListView,
+                                  CreateView,
+                                  UpdateView,
+                                  DeleteView)
 
 from core.mixins import StaffRequiredMixin
-from .forms import EmployeeCreateForm, EmployeeUpdateForm
+from .forms import (EmployeeCreateForm,
+                    EmployeeUpdateForm,
+                    EmployeeAuthenticationForm)
+
 from .models import UserProfile
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
@@ -17,6 +25,7 @@ from django.db.models import Q
 class LoginUserView(LoginView):
     template_name = 'employees/employee_login.html'
     redirect_authenticated_user = True
+    authentication_form = EmployeeAuthenticationForm
 
     def get_success_url(self):
         return reverse_lazy('dashboard:dashboard')

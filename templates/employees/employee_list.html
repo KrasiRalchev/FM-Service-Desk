@@ -76,8 +76,7 @@
 
     <div class="card-header">
         <div>
-            <h2>Employees</h2>
-            <p>List of registered employees</p>
+            <h2>List of registered employees</h2>
         </div>
 
         <span class="employee-count">
@@ -118,7 +117,7 @@
                             <div>
                                 <div class="employee-name">
                                     {{ employee.first_name }}
-                                    {{ employee.last_name }}
+                                    {{ employee.last_name|upper }}
                                 </div>
 
                                 <div class="employee-email">

@@ -1,45 +1,38 @@
 
-from django import forms
 from django.contrib.auth.forms import SetPasswordForm
 from django.contrib.auth.models import User
 from .models import UserProfile
 
-from django.contrib.auth import authenticate
-
 
 # Verification form
 
-class EmployeeVerificationForm(forms.Form):
+from django import forms
+from django.contrib.auth.forms import AuthenticationForm
+
+
+class EmployeeAuthenticationForm(AuthenticationForm):
+
     username = forms.CharField(
         max_length=150,
-        label="Username"
+        label="Username",
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Enter your username",
+                "autocomplete": "username",
+                "autofocus": True,
+            }
+        )
     )
 
     password = forms.CharField(
-        widget=forms.PasswordInput,
-        label="Password"
+        label="Password",
+        widget=forms.PasswordInput(
+            attrs={
+                "placeholder": "Enter your password",
+                "autocomplete": "current-password",
+            }
+        )
     )
-
-    def clean(self):
-        cleaned_data = super().clean()
-
-        username = cleaned_data.get("username")
-        password = cleaned_data.get("password")
-
-        if username and password:
-            user = authenticate(
-                username=username,
-                password=password
-            )
-
-            if user is None:
-                raise forms.ValidationError(
-                    "Invalid username or password."
-                )
-
-            cleaned_data["user"] = user
-
-        return cleaned_data
 
 # Create employee form
 

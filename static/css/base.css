@@ -22,7 +22,7 @@ body {
         Arial,
         sans-serif;
 
-    background: #f4f6f8;
+    background: #17294d;
     color: #1f2937;
 
     min-height: 100vh;
@@ -276,7 +276,7 @@ body {
 ========================================= */
 
 .topbar {
-    height: 76px;
+    height: 60px;
 
     background: #ffffff;
 
@@ -550,7 +550,7 @@ body {
 
     font-weight: 700;
 
-    color: #111827;
+    color: #1a7f87;
 }
 
 .page-description {

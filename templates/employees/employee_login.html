@@ -1,73 +1,236 @@
-
 {% load static %}
 
-{% block title %}Employee Verification{% endblock %}
+<html lang="en">
 
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/employee_verification.css' %}">
-{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<div class="verification-page">
+    <title>FM Service Desk | Login</title>
 
-    <div class="page-header">
-        <h1>Employee Verification</h1>
-        <p>Verify your employee account to continue</p>
-    </div>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
 
-    <div class="verification-card">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
 
-        <div class="verification-card-header">
-            <h2>Verify Employee</h2>
-            <p>Enter your username and password to verify your identity.</p>
+<body>
+
+<div class="login-page">
+
+    <header class="brand">
+
+       <div class="brand-logo">
+           <img src="{% static 'images/plane-logo.png' %}" alt="Aircraft">
+       </div>
+
+        <div class="brand-text">
+
+            <h1>
+                <span>FM</span> SERVICE DESK
+            </h1>
+
+            <div class="brand-subtitle">
+                FACILITY MANAGEMENT SYSTEM
+            </div>
+
         </div>
 
-        <form method="post" class="verification-form">
+    </header>
 
-            {% csrf_token %}
 
-            {% if form.non_field_errors %}
-                <div class="form-error">
-                    {{ form.non_field_errors }}
+    <main class="login-card">
+
+        <div class="login-content">
+
+            <h2>Welcome back</h2>
+
+            <p class="login-subtitle">
+                Sign in to your account
+            </p>
+
+
+            <form method="post" class="verification-form">
+
+                {% csrf_token %}
+
+                 {% if form.non_field_errors %}
+                    <div class="form-error">
+                        {{ form.non_field_errors }}
+                    </div>
+                 {% endif %}
+
+
+                <div class="form-group">
+
+                    <label for="{{ form.username.id_for_label }}">
+                        Username
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            <i data-lucide="user-round"></i>
+                        </span>
+
+                        {{ form.username }}
+
+                        {% if form.username.errors %}
+                            <div class="field-error">
+                                {{ form.username.errors }}
+                            </div>
+                        {% endif %}
+                    </div>
+
                 </div>
-            {% endif %}
 
-            <div class="form-group">
-                <label for="{{ form.username.id_for_label }}">
-                    Username
-                </label>
 
-                {{ form.username }}
+                <div class="form-group">
 
-                {% if form.username.errors %}
-                    <div class="field-error">
-                        {{ form.username.errors }}
+                    <label for="{{ form.password.id_for_label }}">
+                        Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            <i data-lucide="lock-keyhole"></i>
+                        </span>
+
+                        {{ form.password }}
+
+                        {% if form.password.errors %}
+                            <div class="field-error">
+                                {{ form.password.errors }}
+                            </div>
+                        {% endif %}
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            onclick="togglePassword()"
+                        >
+                            <i data-lucide="eye"></i>
+                        </button>
+
                     </div>
-                {% endif %}
-            </div>
 
-            <div class="form-group">
-                <label for="{{ form.password.id_for_label }}">
-                    Password
-                </label>
+                </div>
 
-                {{ form.password }}
 
-                {% if form.password.errors %}
-                    <div class="field-error">
-                        {{ form.password.errors }}
-                    </div>
-                {% endif %}
-            </div>
+                <div class="login-options">
 
-            <div class="form-actions">
-                <button type="submit" class="verify-button">
-                    Login
+                    <label class="remember">
+
+                        <input type="checkbox">
+
+                        <span class="checkmark"></span>
+
+                        <span>Remember me</span>
+
+                    </label>
+
+
+                    <a href="#">
+                        Forgot password?
+                    </a>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="login-button"
+                >
+                    <span>Sign In</span>
+                    <span class="arrow">→</span>
                 </button>
-            </div>
 
-        </form>
 
-    </div>
+                <div class="divider">
+
+                    <span></span>
+
+                    <strong>or</strong>
+
+                    <span></span>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="organization-login"
+                >
+
+                    <span class="organization-icon">
+                        <i data-lucide="building-2"></i>
+                    </span>
+
+                    <span>
+                        Sign in with your organization account
+                    </span>
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <footer class="footer">
+
+        <div class="footer-left">
+
+            FM Service Desk
+            <span>© 2026</span>
+            <span>|</span>
+            Safe Airports. Reliable Operations.
+
+        </div>
+
+
+        <div class="footer-right">
+
+            <span>PEOPLE</span>
+            <b>|</b>
+
+            <span>FACILITIES</span>
+            <b>|</b>
+
+            <span>OPERATIONS</span>
+
+            <i></i>
+
+        </div>
+
+    </footer>
 
 </div>
 
+
+<script>
+
+function togglePassword() {
+
+     const passwordInput = document.querySelector('input[name="password"]');
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+    } else {
+        passwordInput.type = "password";
+    }
+
+}
+
+</script>
+
+<script>
+
+    lucide.createIcons();
+
+</script>
+
+</body>
+</html>
