@@ -236,7 +236,13 @@
                 <div class="user-menu">
 
                     <div class="user-avatar">
-                        {{ request.user.username|first|upper }}
+
+                         {% if user.profile.profile_photo %}
+                                    <img src="{{ user.profile.profile_photo.url }}" alt="{{ employee.username }}">
+                                {% else %}
+                                    {{ user.profile.first_name|first|upper }}
+                                {% endif %}
+
                     </div>
 
                     <div class="user-info">

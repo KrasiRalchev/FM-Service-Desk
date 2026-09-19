@@ -111,7 +111,11 @@
                         <div class="employee-info">
 
                             <div class="employee-avatar">
-                                {{ employee.first_name|first|upper }}
+                                {% if employee.profile_photo %}
+                                    <img src="{{ employee.profile_photo.url }}" alt="{{ employee.username }}">
+                                {% else %}
+                                    {{ employee.first_name|first|upper }}
+                                {% endif %}
                             </div>
 
                             <div>

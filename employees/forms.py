@@ -41,6 +41,16 @@ class EmployeeCreateForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput, label="Password")
     email = forms.EmailField(required=False, label="Email")
 
+    profile_photo = forms.ImageField(
+        required=False,
+        label="Profile Photo",
+        widget=forms.FileInput(
+            attrs={
+                'accept': 'image/jpeg,image/png,image/webp'
+            }
+        )
+    )
+
     class Meta:
         model = UserProfile
         fields = [
@@ -49,8 +59,11 @@ class EmployeeCreateForm(forms.ModelForm):
             'position',
             'department',
             'phone',
-            'mobile'
+            'mobile',
+            'profile_photo',
+
         ]
+
 
     def clean_username(self):
         username = self.cleaned_data['username']
@@ -61,6 +74,7 @@ class EmployeeCreateForm(forms.ModelForm):
             )
 
         return username
+
 
     def save(self, commit=True):
         user = User.objects.create_user(
@@ -85,12 +99,23 @@ class EmployeeUpdateForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ['first_name', 'last_name', 'position', 'department', 'phone', 'mobile']
+        fields = ['first_name', 'last_name', 'position', 'department', 'phone', 'mobile', 'profile_photo']
+
+        widgets = {
+            'profile_photo': forms.FileInput(
+                attrs={
+                    'accept': 'image/jpeg,image/png,image/webp',
+                    'id': 'id_profile_photo',
+                    'style': 'display: none;',
+                }
+            ),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         if self.instance and self.instance.user:
             self.fields['email'].initial = self.instance.user.email
+
 
     def save(self, commit=True):
         profile = super().save(commit=False)

@@ -260,6 +260,7 @@
 .employee-avatar {
     width: 38px;
     height: 38px;
+    overflow: hidden;
 
     display: flex;
     align-items: center;
@@ -272,6 +273,13 @@
 
     font-size: 14px;
     font-weight: 700;
+}
+
+.employee-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .employee-name {
@@ -807,4 +815,101 @@
 .password-body .form-actions {
     margin-top: 28px;
     padding-bottom: 0;
+}
+
+
+/* -----------------------------------------
+   Profile Photo
+   ----------------------------------------- */
+
+.profile-photo-area {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 24px;
+}
+
+
+/* -----------------------------------------
+   Photo
+   ----------------------------------------- */
+
+.photo-placeholder,
+.photo-preview {
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+
+    border-radius: 50%;
+}
+
+
+.photo-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f1f5f9;
+    border: 1px solid #d8dee6;
+
+    font-size: 48px;
+}
+
+
+.photo-preview {
+    display: block;
+
+    object-fit: cover;
+
+    border: 1px solid #d8dee6;
+}
+
+
+/* -----------------------------------------
+   Upload
+   ----------------------------------------- */
+
+.photo-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 10px;
+}
+
+
+.photo-upload input[type="file"] {
+    display: none;
+}
+
+
+.upload-button {
+    display: inline-block;
+
+    width: fit-content;
+
+    padding: 10px 18px;
+
+    background: #2563eb;
+    color: white;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+.upload-button:hover {
+    background: #1d4ed8;
+}
+
+.upload-info {
+    margin: 0;
+
+    color: #a52425;
+    font-size: 13px;
 }

@@ -460,6 +460,8 @@ body {
     width: 36px;
     height: 36px;
 
+    overflow: hidden;
+
     border-radius: 50%;
 
     background: #e8eefc;
@@ -474,6 +476,13 @@ body {
     font-weight: 700;
 
     font-size: 13px;
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .user-info {

@@ -45,7 +45,7 @@
 </div>
 
 
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 
     {% csrf_token %}
 
@@ -109,6 +109,81 @@
     </div>
 
     {% endif %}
+
+
+  <!-- PROFILE PHOTO -->
+
+<div class="card employee-form-card">
+
+    <div class="form-card-header">
+        <h2>Profile Photo</h2>
+        <p>Employee profile picture</p>
+    </div>
+
+    <div class="profile-photo-area">
+
+        {% if object and object.profile_photo %}
+
+            <img
+                id="photo-preview"
+                class="photo-preview"
+                src="{{ object.profile_photo.url }}"
+                alt="Employee photo"
+            >
+
+        {% else %}
+
+            <div
+                class="photo-placeholder"
+                id="photo-placeholder">
+
+                <span>👤</span>
+
+            </div>
+
+            <img
+                id="photo-preview"
+                class="photo-preview"
+                src=""
+                alt="Employee photo"
+                style="display: none;"
+            >
+
+        {% endif %}
+
+
+        <div class="photo-upload">
+
+            <label
+                for="id_profile_photo"
+                class="upload-button">
+
+                Choose Photo
+
+            </label>
+
+
+            {{ form.profile_photo }}
+
+
+            <p class="upload-info">
+                JPG, PNG or WebP · Maximum 5 MB
+            </p>
+
+
+            {% if form.profile_photo.errors %}
+
+                <div class="form-error">
+                    {{ form.profile_photo.errors }}
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
 
 
     <!-- CONTACT INFORMATION -->
@@ -301,4 +376,35 @@
 
 </form>
 
+<script>
+
+    const photoInput = document.getElementById('id_profile_photo');
+    const photoPreview = document.getElementById('photo-preview');
+    const photoPlaceholder = document.getElementById('photo-placeholder');
+
+
+    photoInput.addEventListener('change', function () {
+
+        const file = this.files[0];
+
+        if (!file) {
+            return;
+        }
+
+
+        const imageUrl = URL.createObjectURL(file);
+
+        photoPreview.src = imageUrl;
+
+        photoPreview.style.display = 'block';
+
+
+        if (photoPlaceholder) {
+            photoPlaceholder.style.display = 'none';
+        }
+
+    });
+
+</script>
 {% endblock %}
+
