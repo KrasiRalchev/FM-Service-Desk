@@ -91,10 +91,11 @@
 
             <thead>
                 <tr>
-                    <th>Employee</th>
+                    <th class="employee-column">Employee</th>
                     <th>Username</th>
-                    <th>Position</th>
+                    <th>Site</th>
                     <th>Department</th>
+                    <th>Position</th>
                     <th>Phone</th>
                     <th>Mobile</th>
                     <th class="actions-column">Actions</th>
@@ -139,15 +140,20 @@
                         </span>
                     </td>
 
+                    <td>
+                        <span class="site"></span>
+                            {{ employee.site }}
+                    </td>
+
 
                     <td>
-                        {{ employee.position }}
+                        {{ employee.department }}
                     </td>
 
 
                     <td>
                         <span class="department-badge">
-                            {{ employee.department }}
+                            {{ employee.position }}
                         </span>
                     </td>
 

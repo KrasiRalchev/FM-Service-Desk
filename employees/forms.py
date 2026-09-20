@@ -61,7 +61,7 @@ class EmployeeCreateForm(forms.ModelForm):
             'phone',
             'mobile',
             'profile_photo',
-
+            'site',
         ]
 
 
@@ -99,7 +99,16 @@ class EmployeeUpdateForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ['first_name', 'last_name', 'position', 'department', 'phone', 'mobile', 'profile_photo']
+        fields = [
+            'first_name',
+            'last_name',
+            'position',
+            'department',
+            'phone',
+            'mobile',
+            'profile_photo',
+            'site',
+        ]
 
         widgets = {
             'profile_photo': forms.FileInput(

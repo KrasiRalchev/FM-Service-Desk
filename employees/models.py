@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 from cloudinary.models import CloudinaryField
 
-from employees.choices import Site_choices
+from employees.choices import Site_choices, Department_choices
 
 
 # Models: UserProfile
@@ -16,7 +16,7 @@ class UserProfile(models.Model):
     last_name = models.CharField(max_length=100)
     site = models.CharField(max_length=50, choices=Site_choices.choices)
     position = models.CharField(max_length=100, blank=True)
-    department = models.CharField(max_length=100, blank=True)
+    department = models.CharField(max_length=100, choices=Department_choices.choices)
     phone = models.CharField(max_length=20, blank=True)
     mobile = models.CharField(max_length=20, blank=True)
 

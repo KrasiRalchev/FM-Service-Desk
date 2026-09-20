@@ -156,7 +156,8 @@
    ========================================= */
 
 .employees-card {
-    overflow: hidden;
+    overflow-y: auto;
+    max-height: 380px;
 }
 
 .card-header {
@@ -203,11 +204,11 @@
 }
 
 .employees-table {
-    width: 100%;
     border-collapse: collapse;
 }
 
 .employees-table th {
+
     padding: 13px 20px;
 
     background: #f8fafc;
@@ -224,6 +225,7 @@
 
     color: #64748b;
 }
+
 
 .employees-table td {
     padding: 16px 20px;
@@ -322,6 +324,10 @@
 /* =========================================
    Actions
    ========================================= */
+
+.employee-column {
+    text-align: center !important;
+}
 
 .actions-column {
     text-align: center !important;
