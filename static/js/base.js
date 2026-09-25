@@ -57,12 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         siteSelector.addEventListener("change", function () {
 
-            const selectedSite = this.value;
-
-            console.log(
-                "Selected site:",
-                selectedSite
-            );
+            this.form.submit();
 
             /*
             По-късно тук можем да добавим:

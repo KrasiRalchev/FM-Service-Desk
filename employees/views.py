@@ -45,6 +45,7 @@ class EmployeeListView(StaffRequiredMixin, ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         q = self.request.GET.get('q')
+        site = self.request.GET.get('site')
         department = self.request.GET.get('department')
 
         if q:
@@ -56,6 +57,9 @@ class EmployeeListView(StaffRequiredMixin, ListView):
                 Q(user__username__icontains=q)
             )
 
+        if site:
+            queryset = queryset.filter(site__icontains=site)
+
         if department:
             queryset = queryset.filter(department__icontains=department)
 
@@ -64,6 +68,7 @@ class EmployeeListView(StaffRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['q'] = self.request.GET.get('q', '')
+        context['site'] = self.request.GET.get('site', '')
         context['department'] = self.request.GET.get('department', '')
         return context
 
