@@ -35,8 +35,10 @@ ALLOWED_HOSTS = []
 
 PROJECT_APPS = [
     'employees',
+    'organization',
     'dashboard',
     'cloudinary',
+    'core',
     'cloudinary_storage',
                 ]
 
