@@ -3,28 +3,29 @@ from django.db import models
 
 from employees.models import UserProfile
 
+"""
+Models: Organization, Site, Directorate, Department, Service, Unit, CostCenter
 
-# Models: Organization, Site, Directorate, Department, Service, Unit, CostCenter
-
-# Organization
-# │
-# └── Site
-#     │
-#     ├── Directorate
-#     │   │
-#     │   └── Department
-#     │       │
-#     │       └── Service
-#     │           │
-#     │           └── Unit
-#     │
-#     └── Department
-#         │
-#         ├── Service
-#         │   │
-#         │   └── Unit
-#         │
-#         └── Unit
+Organization
+│
+└── Site
+    │
+    ├── Directorate
+    │   │
+    │   └── Department
+    │       │
+    │       └── Service
+    │           │
+    │           └── Unit
+    │
+    └── Department
+        │
+        ├── Service
+        │   │
+        │   └── Unit
+        │
+        └── Unit
+"""
 
 
 class CostCenter(models.Model):
@@ -51,7 +52,7 @@ class CostCenter(models.Model):
         ordering = ['name']
 
     def __str__(self):
-        return f"{self.code} - {self.name}"
+        return f"{self.number} - {self.name}"
 
 
 class Organization(models.Model):
@@ -88,6 +89,10 @@ class Site(models.Model):
     code = models.CharField(max_length=15, unique=True)
     description = models.TextField(blank=True)
 
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
     def __str__(self):
         return self.name
 
@@ -114,6 +119,10 @@ class ManagedUnit(models.Model):
 
     code = models.CharField(max_length=15, unique=True)
     description = models.TextField(blank=True)
+
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         abstract = True
